@@ -12,7 +12,7 @@ import Header from '../Header'
 
 const settings = {
   dots: true,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
@@ -120,7 +120,7 @@ class Home extends Component {
                     className="topRatedCoverPic"
                   />
                   <h1 className="topRatedBook-title">{title}</h1>
-                  <h2 className="topRatedBookAuthorName">{authorName}</h2>
+                  <p className="topRatedBookAuthorName">{authorName}</p>
                 </li>
               </Link>
             )
