@@ -3,9 +3,9 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsFillStarFill} from 'react-icons/bs'
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
 
 import Header from '../Header'
+import Footer from '../Footer'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -130,18 +130,6 @@ class BookDetails extends Component {
     </div>
   )
 
-  renderFooter = () => (
-    <div className="footer">
-      <div className="footerIconsContainer">
-        <FaGoogle className="footIcons" />
-        <FaTwitter className="footIcons" />
-        <FaInstagram className="footIcons" />
-        <FaYoutube />
-      </div>
-      <p>Contact Us</p>
-    </div>
-  )
-
   renderFinalDetails = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -163,8 +151,8 @@ class BookDetails extends Component {
         <div className="main-container">
           <div className="bookIdDetailsContainer">
             {this.renderFinalDetails()}
-            {this.renderFooter()}
           </div>
+          <Footer />
         </div>
       </div>
     )

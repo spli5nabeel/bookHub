@@ -2,16 +2,12 @@ import './index.css'
 import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {GiHamburgerMenu} from 'react-icons/gi'
-
 import {Component} from 'react'
+import HomeContext from '../../context/homeContext'
 
 class Header extends Component {
   state = {
-    activeTabId: 'HOME',
-  }
-
-  onChangeTab = event => {
-    this.setState({activeTabId: event.target.id})
+    showSlideDown: false,
   }
 
   onClickLogout = () => {
@@ -20,57 +16,81 @@ class Header extends Component {
     history.replace('/login')
   }
 
+  onClickHamburger = () => {
+    this.setState(prevState => ({showSlideDown: !prevState.showSlideDown}))
+  }
+
+  renderSlideDown = () => this.renderNavOptions()
+
+  renderNavOptions = () => (
+    <HomeContext.Consumer>
+      {value => {
+        const {activeTabId, onChangeTab} = value
+        return (
+          <>
+            <Link to="/" className="link">
+              <p
+                id="HOME"
+                className={`${
+                  activeTabId === 'HOME' ? 'nav-option isActive' : 'nav-option'
+                }`}
+                onClick={onChangeTab}
+              >
+                Home
+              </p>
+            </Link>
+            <Link to="/shelf" className="link">
+              <p
+                id="BOOKSHELVES"
+                className={`${
+                  activeTabId === 'BOOKSHELVES'
+                    ? 'nav-option isActive'
+                    : 'nav-option'
+                }`}
+                onClick={onChangeTab}
+              >
+                Bookshelves
+              </p>
+            </Link>
+            <button
+              type="button"
+              className="logoutBtn"
+              onClick={this.onClickLogout}
+            >
+              Logout
+            </button>
+          </>
+        )
+      }}
+    </HomeContext.Consumer>
+  )
+
   render() {
-    const {activeTabId} = this.state
+    const {showSlideDown} = this.state
     return (
-      <div className="headerContainer">
-        <Link to="/" className="websiteLogoContainer">
-          <img
-            src="https://res.cloudinary.com/dwsbjx12w/image/upload/v1694596689/Group_7730_uuioli.png"
-            alt="website logo"
-            className="bookHub"
-          />
-          <h1 className="websiteName">ookHub</h1>
-        </Link>
-
-        <div className="hamburger">
-          <GiHamburgerMenu />
-        </div>
-
-        <div className="navbarOptions-container">
-          <Link to="/" className="link">
-            <p
-              id="HOME"
-              className={`${
-                activeTabId === 'HOME' ? 'nav-option isActive' : 'nav-option'
-              }`}
-              onClick={this.onChangeTab}
-            >
-              Home
-            </p>
+      <>
+        <div className="headerContainer">
+          <Link to="/" className="websiteLogoContainer">
+            <img
+              src="https://res.cloudinary.com/dwsbjx12w/image/upload/v1694596689/Group_7730_uuioli.png"
+              alt="website logo"
+              className="bookHub"
+            />
+            <h1 className="websiteName">ookHub</h1>
           </Link>
-          <Link to="/shelf" className="link">
-            <p
-              id="BOOKSHELVES"
-              className={`${
-                activeTabId === 'BOOKSHELVES'
-                  ? 'nav-option isActive'
-                  : 'nav-option'
-              }`}
-              onClick={this.onChangeTab}
-            >
-              Bookshelves
-            </p>
-          </Link>
-          <button
-            type="button"
-            className="logoutBtn"
-            onClick={this.onClickLogout}
-          >
-            Logout
-          </button>
+
+          <div className="hamburger">
+            <GiHamburgerMenu onClick={this.onClickHamburger} />
+          </div>
+
+          <div className="navbarOptions-container">
+            {this.renderNavOptions()}
+          </div>
         </div>
-      </div>
+        {showSlideDown && (
+          <div className="slideDownContainer">{this.renderSlideDown()}</div>
+        )}
+      </>
     )
   }
 }

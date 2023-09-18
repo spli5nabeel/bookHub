@@ -3,10 +3,10 @@ import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
 
 import Header from '../Header'
 import BookshelvesItem from '../BookshelvesItem'
+import Footer from '../Footer'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -43,7 +43,7 @@ class Bookshelves extends Component {
     apiStatus: apiStatusConstants.initial,
     bookshelfName: 'ALL',
     activeValue: 'All',
-    searchText: '',
+    searchValue: '',
     bookshelvesData: [],
   }
 
@@ -52,7 +52,7 @@ class Bookshelves extends Component {
   }
 
   onClickTryAgain = () => {
-    this.getApiBookDetails()
+    this.getReadBooksApi()
   }
 
   onClickBookStatus = event => {
@@ -71,13 +71,13 @@ class Bookshelves extends Component {
   }
 
   onChangeSearchInput = event => {
-    this.setState({searchText: event.target.value})
+    this.setState({searchValue: event.target.value})
   }
 
   getReadBooksApi = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {bookshelfName, searchText} = this.state
-    const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchText}`
+    const {bookshelfName, searchValue} = this.state
+    const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchValue}`
     const options = {
       method: 'GET',
       headers: {
@@ -109,9 +109,10 @@ class Bookshelves extends Component {
     return (
       <div className="section1">
         <h1 className="section1-heading">Bookshelves</h1>
-        <ul className="section1-list">
+        <div className="section1-list">
           {bookshelvesList.map(eachItem => (
-            <li
+            <button
+              type="button"
               key={eachItem.id}
               data-id={eachItem.value} // Use 'data-id' attribute to store the id
               data-value={eachItem.label}
@@ -123,9 +124,9 @@ class Bookshelves extends Component {
               onClick={this.onClickBookStatus}
             >
               {eachItem.label}
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       </div>
     )
   }
@@ -137,7 +138,7 @@ class Bookshelves extends Component {
   )
 
   noBooksFoundView = () => {
-    const {searchText} = this.state
+    const {searchValue} = this.state
     return (
       <div className="noBooksFoundViewContainer">
         <img
@@ -146,14 +147,19 @@ class Bookshelves extends Component {
           className="noBooks"
         />
         <p className="noBooks-title">
-          Your search for {searchText} did not find any matches.
+          Your search for {searchValue} did not find any matches.
         </p>
       </div>
     )
   }
 
   onSuccessApi = () => {
-    const {activeValue, bookshelvesData, searchText, bookshelfName} = this.state
+    const {
+      activeValue,
+      bookshelvesData,
+      searchValue,
+      bookshelfName,
+    } = this.state
     if (bookshelvesData.length === 0) {
       return this.noBooksFoundView()
     }
@@ -167,7 +173,7 @@ class Bookshelves extends Component {
               className="search-bar"
               onChange={this.onChangeSearchInput}
               placeholder="Search"
-              value={searchText}
+              value={searchValue}
             />
             <button
               type="button"
@@ -241,28 +247,16 @@ class Bookshelves extends Component {
     }
   }
 
-  renderFooter = () => (
-    <div className="footer">
-      <div className="footerIconsContainer">
-        <FaGoogle className="footIcons" />
-        <FaTwitter className="footIcons" />
-        <FaInstagram className="footIcons" />
-        <FaYoutube />
-      </div>
-      <p>Contact Us</p>
-    </div>
-  )
-
   render() {
     return (
-      <div>
+      <>
         <Header />
         <div className="bookshelves-container">
           {this.renderLeftNavbar()}
           {this.renderBookShelves()}
         </div>
-        {this.renderFooter()}
-      </div>
+        <Footer />
+      </>
     )
   }
 }

@@ -2,7 +2,8 @@
   background-color: #f5f7fa; /*#F5F7FA*/
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 25px;
 }
 .bookIdDetailsContainer {

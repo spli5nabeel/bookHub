@@ -46,3 +46,8 @@
     display: none;
   }
 }
+.slideDownContainer {
+  text-align: right;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}

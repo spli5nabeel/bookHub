@@ -113,19 +113,6 @@
   text-align: center;
   line-height: 16px;
 }
-.footer {
-  margin: 32px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 45px;
-}
-.footerIconsContainer {
-  display: flex;
-}
-.footIcons {
-  margin-right: 15px;
-}
 .contactUs {
   color: #3d3c3c;
   font-family: 'HK Grotesk';

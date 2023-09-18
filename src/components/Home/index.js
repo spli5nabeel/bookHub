@@ -5,7 +5,8 @@ import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
 
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
+//  import HomeContext from '../../context/homeContext'
+import Footer from '../Footer'
 
 import Header from '../Header'
 
@@ -109,16 +110,17 @@ class Home extends Component {
         <Slider {...settings}>
           {booksData.map(eachBook => {
             const {id, authorName, coverPic, title} = eachBook
+            const uniqueKey = `book-${id}`
             return (
-              <Link to={`/books/${id}`} className="link">
-                <li className="slick-item" key={id}>
+              <Link to={`/books/${id}`} className="link" key={uniqueKey}>
+                <li className="slick-item">
                   <img
                     src={coverPic}
                     alt={title}
                     className="topRatedCoverPic"
                   />
                   <h1 className="topRatedBook-title">{title}</h1>
-                  <h1 className="topRatedBookAuthorName">{authorName}</h1>
+                  <h2 className="topRatedBookAuthorName">{authorName}</h2>
                 </li>
               </Link>
             )
@@ -161,20 +163,7 @@ class Home extends Component {
     }
   }
 
-  renderFooter = () => (
-    <div className="footer">
-      <div className="footerIconsContainer">
-        <FaGoogle className="footIcons" />
-        <FaTwitter className="footIcons" />
-        <FaInstagram className="footIcons" />
-        <FaYoutube />
-      </div>
-      <p>Contact Us</p>
-    </div>
-  )
-
   render() {
-    //  console.log(activeTabId)
     return (
       <div className="HomePage">
         <Header />
@@ -203,7 +192,7 @@ class Home extends Component {
               {this.renderTopRatedBooks()}
             </div>
           </div>
-          {this.renderFooter()}
+          <Footer />
         </div>
       </div>
     )
