@@ -109,10 +109,10 @@ class Bookshelves extends Component {
     return (
       <div className="section1">
         <h1 className="section1-heading">Bookshelves</h1>
-        <div className="section1-list">
+        <ul className="section1-list">
           {bookshelvesList.map(eachItem => (
-            <button
-              type="button"
+            <li
+              //              type="button"
               key={eachItem.id}
               data-id={eachItem.value} // Use 'data-id' attribute to store the id
               data-value={eachItem.label}
@@ -124,9 +124,9 @@ class Bookshelves extends Component {
               onClick={this.onClickBookStatus}
             >
               {eachItem.label}
-            </button>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     )
   }
@@ -147,7 +147,7 @@ class Bookshelves extends Component {
           className="noBooks"
         />
         <p className="noBooks-title">
-          Your search for {searchValue} did not find any matches.
+          {`Your search for ${searchValue} did not find any matches.`}
         </p>
       </div>
     )
@@ -166,7 +166,7 @@ class Bookshelves extends Component {
     return (
       <div className="section2">
         <div className="section2-1">
-          <h1 className="section2-1-heading">{activeValue} Books</h1>
+          <h1 className="section2-1-heading">{`${activeValue} Books`}</h1>
           <div className="search-container">
             <input
               type="search"
