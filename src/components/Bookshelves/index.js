@@ -41,9 +41,16 @@ const bookshelvesList = [
 class Bookshelves extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
+<<<<<<< HEAD
+    bookshelfName: bookshelvesList[0].value,
+    activeValue: bookshelvesList[0].label,
+    searchInput: '',
+    search: '',
+=======
     bookshelfName: 'ALL',
     activeValue: 'All',
     searchValue: '',
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
     bookshelvesData: [],
   }
 
@@ -67,17 +74,33 @@ class Bookshelves extends Component {
   }
 
   onClickSearchIcon = () => {
+<<<<<<< HEAD
+    this.setState(
+      prevState => ({search: prevState.searchInput}),
+      this.getReadBooksApi,
+    )
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+=======
     this.getReadBooksApi()
   }
 
   onChangeSearchInput = event => {
     this.setState({searchValue: event.target.value})
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
   }
 
   getReadBooksApi = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
+<<<<<<< HEAD
+    const {bookshelfName, search} = this.state
+    const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${search}`
+=======
     const {bookshelfName, searchValue} = this.state
     const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchValue}`
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
     const options = {
       method: 'GET',
       headers: {
@@ -112,7 +135,10 @@ class Bookshelves extends Component {
         <ul className="section1-list">
           {bookshelvesList.map(eachItem => (
             <li
+<<<<<<< HEAD
+=======
               //              type="button"
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
               key={eachItem.id}
               data-id={eachItem.value} // Use 'data-id' attribute to store the id
               data-value={eachItem.label}
@@ -138,6 +164,8 @@ class Bookshelves extends Component {
   )
 
   noBooksFoundView = () => {
+    const {searchInput} = this.state
+    //  console.log(search)
     const {searchValue} = this.state
     return (
       <div className="noBooksFoundViewContainer">
@@ -147,7 +175,11 @@ class Bookshelves extends Component {
           className="noBooks"
         />
         <p className="noBooks-title">
+<<<<<<< HEAD
+          Your search for {searchInput} did not find any matches.
+=======
           {`Your search for ${searchValue} did not find any matches.`}
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
         </p>
       </div>
     )
@@ -157,12 +189,22 @@ class Bookshelves extends Component {
     const {
       activeValue,
       bookshelvesData,
+<<<<<<< HEAD
+      searchInput,
+=======
       searchValue,
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
       bookshelfName,
     } = this.state
     if (bookshelvesData.length === 0) {
       return this.noBooksFoundView()
     }
+<<<<<<< HEAD
+    //  console.log(activeValue)
+    //  console.log(searchInput)
+
+=======
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
     return (
       <div className="section2">
         <div className="section2-1">
@@ -173,7 +215,11 @@ class Bookshelves extends Component {
               className="search-bar"
               onChange={this.onChangeSearchInput}
               placeholder="Search"
+<<<<<<< HEAD
+              value={searchInput}
+=======
               value={searchValue}
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
             />
             <button
               type="button"
@@ -192,6 +238,10 @@ class Bookshelves extends Component {
               type="button"
               key={eachItem.id}
               data-id={eachItem.value}
+<<<<<<< HEAD
+              data-value={eachItem.label}
+=======
+>>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
               onClick={this.onClickBookStatus}
               className={`${
                 eachItem.value === bookshelfName
