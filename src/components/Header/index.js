@@ -2,6 +2,7 @@ import './index.css'
 import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {GiHamburgerMenu} from 'react-icons/gi'
+import {AiOutlineCloseCircle} from 'react-icons/ai'
 import {Component} from 'react'
 import HomeContext from '../../context/homeContext'
 
@@ -88,7 +89,13 @@ class Header extends Component {
           </div>
         </div>
         {showSlideDown && (
-          <div className="slideDownContainer">{this.renderSlideDown()}</div>
+          <div className="slideDownContainer">
+            {this.renderSlideDown()}
+            <AiOutlineCloseCircle
+              className="closeOption"
+              onClick={this.onClickHamburger}
+            />
+          </div>
         )}
       </>
     )
