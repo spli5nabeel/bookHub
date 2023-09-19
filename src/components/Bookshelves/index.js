@@ -135,10 +135,6 @@ class Bookshelves extends Component {
         <ul className="section1-list">
           {bookshelvesList.map(eachItem => (
             <li
-<<<<<<< HEAD
-=======
-              //              type="button"
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
               key={eachItem.id}
               data-id={eachItem.value} // Use 'data-id' attribute to store the id
               data-value={eachItem.label}
@@ -175,11 +171,7 @@ class Bookshelves extends Component {
           className="noBooks"
         />
         <p className="noBooks-title">
-<<<<<<< HEAD
           Your search for {searchInput} did not find any matches.
-=======
-          {`Your search for ${searchValue} did not find any matches.`}
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
         </p>
       </div>
     )
@@ -189,22 +181,12 @@ class Bookshelves extends Component {
     const {
       activeValue,
       bookshelvesData,
-<<<<<<< HEAD
-      searchInput,
-=======
       searchValue,
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
       bookshelfName,
     } = this.state
     if (bookshelvesData.length === 0) {
       return this.noBooksFoundView()
     }
-<<<<<<< HEAD
-    //  console.log(activeValue)
-    //  console.log(searchInput)
-
-=======
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
     return (
       <div className="section2">
         <div className="section2-1">
@@ -215,11 +197,7 @@ class Bookshelves extends Component {
               className="search-bar"
               onChange={this.onChangeSearchInput}
               placeholder="Search"
-<<<<<<< HEAD
-              value={searchInput}
-=======
               value={searchValue}
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
             />
             <button
               type="button"
@@ -238,10 +216,7 @@ class Bookshelves extends Component {
               type="button"
               key={eachItem.id}
               data-id={eachItem.value}
-<<<<<<< HEAD
-              data-value={eachItem.label}
-=======
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
+               data-value={eachItem.label}
               onClick={this.onClickBookStatus}
               className={`${
                 eachItem.value === bookshelfName
