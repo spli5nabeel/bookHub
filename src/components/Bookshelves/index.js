@@ -41,16 +41,10 @@ const bookshelvesList = [
 class Bookshelves extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
-<<<<<<< HEAD
-    bookshelfName: bookshelvesList[0].value,
-    activeValue: bookshelvesList[0].label,
-    searchInput: '',
-    search: '',
-=======
     bookshelfName: 'ALL',
     activeValue: 'All',
-    searchValue: '',
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
+    searchInput: '',
+    search: '',
     bookshelvesData: [],
   }
 
@@ -58,8 +52,11 @@ class Bookshelves extends Component {
     this.getReadBooksApi()
   }
 
-  onClickTryAgain = () => {
-    this.getReadBooksApi()
+  onClickSearchIcon = () => {
+    this.setState(
+      prevState => ({search: prevState.searchInput}),
+      this.getReadBooksApi,
+    )
   }
 
   onClickBookStatus = event => {
@@ -73,34 +70,18 @@ class Bookshelves extends Component {
     )
   }
 
-  onClickSearchIcon = () => {
-<<<<<<< HEAD
-    this.setState(
-      prevState => ({search: prevState.searchInput}),
-      this.getReadBooksApi,
-    )
-  }
-
-  onChangeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
-=======
+  onClickTryAgain = () => {
     this.getReadBooksApi()
   }
 
   onChangeSearchInput = event => {
-    this.setState({searchValue: event.target.value})
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
+    this.setState({searchInput: event.target.value})
   }
 
   getReadBooksApi = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-<<<<<<< HEAD
     const {bookshelfName, search} = this.state
     const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${search}`
-=======
-    const {bookshelfName, searchValue} = this.state
-    const url = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchValue}`
->>>>>>> 73b43c6eb7aab4ac1191bca617403826b2402c2b
     const options = {
       method: 'GET',
       headers: {
@@ -161,8 +142,7 @@ class Bookshelves extends Component {
 
   noBooksFoundView = () => {
     const {searchInput} = this.state
-    //  console.log(search)
-    const {searchValue} = this.state
+    console.log(searchInput)
     return (
       <div className="noBooksFoundViewContainer">
         <img
@@ -181,7 +161,7 @@ class Bookshelves extends Component {
     const {
       activeValue,
       bookshelvesData,
-      searchValue,
+      searchInput,
       bookshelfName,
     } = this.state
     if (bookshelvesData.length === 0) {
@@ -197,7 +177,7 @@ class Bookshelves extends Component {
               className="search-bar"
               onChange={this.onChangeSearchInput}
               placeholder="Search"
-              value={searchValue}
+              value={searchInput}
             />
             <button
               type="button"
@@ -216,7 +196,7 @@ class Bookshelves extends Component {
               type="button"
               key={eachItem.id}
               data-id={eachItem.value}
-               data-value={eachItem.label}
+              data-value={eachItem.label}
               onClick={this.onClickBookStatus}
               className={`${
                 eachItem.value === bookshelfName
