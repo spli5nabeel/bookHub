@@ -47,7 +47,12 @@
   }
 }
 .slideDownContainer {
-  text-align: right;
-  padding-right: 30px;
-  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 15px;
+}
+.closeOption {
+  margin: 0px 15px;
 }
