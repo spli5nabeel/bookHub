@@ -141,8 +141,8 @@ class Bookshelves extends Component {
   )
 
   noBooksFoundView = () => {
-    const {searchInput} = this.state
-    console.log(searchInput)
+    const {search} = this.state
+    console.log(search)
     return (
       <div className="noBooksFoundViewContainer">
         <img
@@ -151,44 +151,19 @@ class Bookshelves extends Component {
           className="noBooks"
         />
         <p className="noBooks-title">
-          Your search for {searchInput} did not find any matches.
+          Your search for {search} did not find any matches.
         </p>
       </div>
     )
   }
 
   onSuccessApi = () => {
-    const {
-      activeValue,
-      bookshelvesData,
-      searchInput,
-      bookshelfName,
-    } = this.state
+    const {bookshelvesData, bookshelfName} = this.state
     if (bookshelvesData.length === 0) {
       return this.noBooksFoundView()
     }
     return (
       <div className="section2">
-        <div className="section2-1">
-          <h1 className="section2-1-heading">{`${activeValue} Books`}</h1>
-          <div className="search-container">
-            <input
-              type="search"
-              className="search-bar"
-              onChange={this.onChangeSearchInput}
-              placeholder="Search"
-              value={searchInput}
-            />
-            <button
-              type="button"
-              testid="searchButton"
-              className="searchBtn"
-              onClick={this.onClickSearchIcon}
-            >
-              <BsSearch className="searchIcon" />
-            </button>
-          </div>
-        </div>
         <div className="sm-Navbar">
           <h1 className="sm-Bookshelves-Heading">Bookshelves</h1>
           {bookshelvesList.map(eachItem => (
@@ -253,12 +228,35 @@ class Bookshelves extends Component {
   }
 
   render() {
+    const {searchInput, activeValue} = this.state
     return (
       <>
         <Header />
         <div className="bookshelves-container">
           {this.renderLeftNavbar()}
-          {this.renderBookShelves()}
+          <div className="section2">
+            <div className="section2-1">
+              <h1 className="section2-1-heading">{`${activeValue} Books`}</h1>
+              <div className="search-container">
+                <input
+                  type="search"
+                  className="search-bar"
+                  onChange={this.onChangeSearchInput}
+                  placeholder="Search"
+                  value={searchInput}
+                />
+                <button
+                  type="button"
+                  testid="searchButton"
+                  className="searchBtn"
+                  onClick={this.onClickSearchIcon}
+                >
+                  <BsSearch className="searchIcon" />
+                </button>
+              </div>
+            </div>
+            {this.renderBookShelves()}
+          </div>
         </div>
         <Footer />
       </>
