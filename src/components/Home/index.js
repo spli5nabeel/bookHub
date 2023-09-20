@@ -5,19 +5,18 @@ import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
 
-//  import HomeContext from '../../context/homeContext'
 import Footer from '../Footer'
 
 import Header from '../Header'
 
 const settings = {
-  dots: true,
-  infinite: false,
+  dots: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  //    autoplay: true, // Enable autoplay
-  //    autoplaySpeed: 2000,
+  autoplay: true, // Enable autoplay
+  autoplaySpeed: 2000,
   responsive: [
     {
       breakpoint: 1024,
