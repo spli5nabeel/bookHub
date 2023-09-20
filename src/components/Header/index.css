@@ -36,6 +36,9 @@
 .link {
   text-decoration: none;
 }
+.link:visited {
+  color: inherit;
+}
 .hamburger {
   width: 24px;
   height: 24px;
