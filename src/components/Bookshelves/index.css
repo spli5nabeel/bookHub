@@ -1,7 +1,7 @@
 .bookshelves-container {
-  background-color: #f5f7fa; /*#f5f7fa*/
+  background-color: #f5f7fa;
   width: 100%;
-  height: 95vh;
+  min-height: 95vh;
   display: flex;
   justify-content: space-between;
   padding: 25px;
@@ -9,6 +9,7 @@
 @media (max-width: 768px) {
   .bookshelves-container {
     flex-direction: column;
+    min-height: 95vh;
   }
 }
 .loader-container {
@@ -29,6 +30,7 @@
   background-color: #ffffff;
   padding: 25px;
   border-radius: 10px;
+  height: 90vh;
 }
 @media (max-width: 768px) {
   .section1 {
@@ -66,18 +68,17 @@
 
 /*SECTION2 STYLING BEGINS*/
 .section2 {
-  width: 75%;
+  width: 90%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 25px;
-  overflow-y: auto;
 }
 @media (max-width: 768px) {
   .section2 {
     width: 100%;
     padding: 0;
-    height: 95vh;
   }
 }
 .section2-1 {
